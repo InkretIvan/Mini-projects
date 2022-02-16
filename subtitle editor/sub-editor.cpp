@@ -2,12 +2,13 @@
 
 using namespace std;
 
+int pomak;
 string remake(string str);
 string milisecToStr(int mili);
 int strToMilisec(string str);
 
 int main() {
-	int pomak,index=0;
+	int index=0;
 	vector<string> lines;
 	string myText,filename;
 	printf("Unesite path do trazene datoteke:\n");
@@ -57,7 +58,18 @@ int main() {
 }
 
 string remake(string str){
+	string prva="",druga="";
+	for(int i=0;i<12;i++){
+		prva+=str[i];
+		druga+=str[i+17];
+	}
+	int prvaNum=strToMilisec(prva)+pomak;
+	int drugaNum=strToMilisec(druga)+pomak;
 	
+	prva=milisecToStr(prvaNum);
+	druga=milisecToStr(drugaNum);
+
+	str=prva+" --> "+druga;
 	
 	return str;
 }
