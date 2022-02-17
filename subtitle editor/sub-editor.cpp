@@ -8,10 +8,16 @@ string milisecToStr(int mili);
 int strToMilisec(string str);
 
 int main() {
+	printf("UPUTE:\n");
+	printf("Otvoriti srt file s titlovima, ctrl+a da sve oznacite i zatim ctrl+c da kopirate\n");
+	printf("napraviti novi file titlovi.srt ili ime po volji, unutra zalijepiti sadrzaj prvog filea\n");
+	printf("slijediti upute dolje\n");
+	printf("-----------------\n");
+	
 	int index=0;
 	vector<string> lines;
 	string myText,filename;
-	printf("Unesite path do trazene datoteke:\n");
+	printf("Unesite path do trazene datoteke (npr. titlovi.srt): \n");
     getline(cin, filename);
     printf("Unesite pomak u milisekundama, negativnu vrijednost za pomak unatrag:\n");
     cin >> pomak;
@@ -52,7 +58,8 @@ int main() {
 		linijePrije[1]=str;
 		MyWriteFile << str << endl;
 	}
-	
+	printf("gotovo:)\n");
+	system("PAUSE");
 	
 	return 0;
 }
@@ -77,6 +84,8 @@ string remake(string str){
 	//cout << prva << " " << druga << endl << endl;
 
 	str=prva+" --> "+druga;
+	
+	//cout << str << endl;
 	
 	return str;
 }
