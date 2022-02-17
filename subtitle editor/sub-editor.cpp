@@ -63,11 +63,18 @@ string remake(string str){
 		prva+=str[i];
 		druga+=str[i+17];
 	}
+	
+	cout << prva << " " << druga << endl;
+	
 	int prvaNum=strToMilisec(prva)+pomak;
 	int drugaNum=strToMilisec(druga)+pomak;
 	
+	cout << prvaNum << " " << drugaNum << endl;
+	
 	prva=milisecToStr(prvaNum);
 	druga=milisecToStr(drugaNum);
+	
+	cout << prva << " " << druga << endl << endl;
 
 	str=prva+" --> "+druga;
 	
@@ -75,11 +82,60 @@ string remake(string str){
 }
 
 int strToMilisec(string str){
-	
-	return 0;
+	int hour,min,sec,mili;
+	hour=(str[0]-'0')*10+(str[1]-'0');
+	min=(str[3]-'0')*10+(str[4]-'0');
+	sec=(str[6]-'0')*10+(str[7]-'0');
+	mili=(str[9]-'0')*100+(str[10]-'0')*10+(str[11]-'0');
+	mili+=sec*100+min*100*60+hour*100*60*60;	
+	return mili;
 }
 
 string milisecToStr(int mili){
+	int hour,min,sec;
+	hour=mili/360000;
+	mili%=360000;
+	min=mili/6000;
+	mili%=6000;
+	sec=mili/100;
+	mili%=100;
 	
-	return "";
+	string hourStr,minStr,secStr,miliStr;
+	string ret="";
+	
+	stringstream ss;  
+    ss << hour;  
+  	ss >> hourStr;
+  	
+  	ss << min;  
+  	ss >> minStr;
+  	
+  	ss << sec;  
+  	ss >> secStr;
+  	
+  	ss << mili;  
+  	ss >> miliStr;
+  	
+  	if(hour<10) ret+="0";
+  	ret+=hourStr;
+  	ret+=":";
+  	
+  	if(min<10) ret+="0";
+  	ret+=minStr;
+  	ret+=":";
+  	
+  	if(sec<10) ret+="0";
+  	ret+=secStr;
+  	ret+=",";
+  	
+  	if(mili<10) ret+="00";
+  	else if(mili<100) ret+="0";
+  	ret+=miliStr;
+  	
+	
+	
+	
+	return ret;
 }
+
+//00:02:05,234 --> 00:02:05,984
